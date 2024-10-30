@@ -7,7 +7,7 @@ ARK="D:\ark"
 if [[ "$1" = "" ]]; then
     echo "Snakes. Why'd it have to be snakes?"
 elif [[ "$1" = "list" ]]; then
-    for file in *.txt; do basename "$file"; done
+    for file in "$ARK"/*.txt; do basename "$file"; done
 else
     # save url
     echo "$1" >> "$ARK"/jones.txt
