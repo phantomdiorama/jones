@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# local vars
+ARK="D:\ark"
+
+# main loop
+if [[ "$1" = "" ]]; then
+    echo "Snakes. Why'd it have to be snakes?"
+elif [[ "$1" = "list" ]]; then
+    for file in *.txt; do basename "$file"; done
+else
+    # save url
+    echo "$1" >> "$ARK"/jones.txt
+    # get page title
+    article=$(curl --silent "$1"        |
+            htmlq --text 'title'        |
+            sed "1!d;s/\W//g"           |
+            sed "s/./\l&/g"             |
+            cut -c 1-36)
+
+    # download page
+    pandoc -f html -t plain "$1" -o "$ARK"/"$article".txt
+fi
