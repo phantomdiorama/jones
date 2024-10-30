@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # local vars
-ARK="D:\ark"
+ARK="~/jones"
 
 # main loop
 if [[ "$1" = "" ]]; then
