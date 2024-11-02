@@ -3,6 +3,8 @@
 # local vars
 ARK="~/jones"
 
+mkdir -p "$RK"
+
 # main loop
 if [[ "$1" = "" ]]; then
     echo "Snakes. Why'd it have to be snakes?"
@@ -14,9 +16,10 @@ else
     # get page title
     article=$(curl --silent "$1"        |
             htmlq --text 'title'        |
-            sed "1!d;s/\W//g"           |
+            sed "1!d;s/\W/\./g"         |
             sed "s/./\l&/g"             |
-            cut -c 1-36)
+            cut -c 1-36                 |
+            tr -s ".")
 
     # download page
     pandoc -f html -t plain "$1" -o "$ARK"/"$article".txt
