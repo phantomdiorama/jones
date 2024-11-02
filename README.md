@@ -14,8 +14,7 @@ Another in a series of things that could be a gist.
 - [htmlq](https://github.com/mgdm/htmlq)
 - [pandoc](https://github.com/jgm/pandoc)
 - [curl](https://curl.se/)
-- [sed](https://www.gnu.org/software/sed/)[^the easiest way to get this
-  and other standard linux tools on Windows is to install git]
+- [sed](https://www.gnu.org/software/sed/)[^1]
 
 ## usage
 
@@ -23,3 +22,5 @@ Another in a series of things that could be a gist.
 jones [url]  # add [url] to archive ('~/jones' by default)
 jones list   # list added files
 ```
+
+[^1]: the easiest way to get this and other standard linux tools on Windows is to install git
