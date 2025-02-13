@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# rearch archiving with pandoc
+
+"""research archiving with pandoc"""
+
 import re
-import requests
-import bs4
 import subprocess
 import sys
-import os
-
 from pathlib import Path
+import bs4
+import requests
 
 # fail if no url
 if len(sys.argv) < 2:
@@ -26,8 +26,8 @@ else:
 print("Getting page info...")
 
 # get url
-url = sys.argv[1]
-res = requests.get(url)
+URL = sys.argv[1]
+res = requests.get(URL, timeout=10)
 
 # get title
 soup = bs4.BeautifulSoup(res.text, "html.parser")
@@ -50,10 +50,12 @@ destination = archive_path / title_path
 
 # pandoc command
 print("Running Pandoc...")
-subprocess.run(["pandoc", "-f", "html", "-t", "plain", url, "-o", destination])
+subprocess.run(
+    ["pandoc", "-f", "html", "-t", "plain", URL, "-o", destination], check=False
+)
 
 # append to archive list
 catalog_path = archive_path / "ark.catalog"
 
-with open(catalog_path, "a") as file:
-    file.write(url + "\n")
+with open(catalog_path, "a", encoding="utf-8") as file:
+    file.write(URL + "\n")
